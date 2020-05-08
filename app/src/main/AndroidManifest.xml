@@ -25,7 +25,6 @@
         <activity android:name=".ui.dashboard.Home" />
         <activity android:name=".ui.MainActivity" />
         <activity android:name=".ui.dashboard.AddEwaste" />
-        <activity android:name=".Mainmenu" />
         <activity
             android:name=".ui.auth.Register"
             android:parentActivityName=".ui.auth.Login" />
