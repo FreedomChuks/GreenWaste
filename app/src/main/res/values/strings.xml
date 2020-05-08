@@ -1,0 +1,21 @@
+<resources>
+    <string name="app_name">GreenWaste.</string>
+    <string name="name_subinfo">Healthy environment tends to good health</string>
+    <string name="phone_number">Phone Number</string>
+    <string name="password">Password</string>
+    <string name="email">Email</string>
+    <string name="firstname">FirstName</string>
+    <string name="lastname">LastName</string>
+    <string name="gender">Gender:</string>
+    <string name="register">Sign UP</string>
+    <string name="female">Female</string>
+    <string name="registration">Sign Up</string>
+    <string name="male">Male</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="adview">adView</string>
+    <string name="profile">Profile</string>
+    <string name="home">Home</string>
+
+</resources>

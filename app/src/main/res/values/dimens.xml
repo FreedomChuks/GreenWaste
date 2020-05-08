@@ -1,0 +1,5 @@
+<resources>
+    <dimen name="fab_margin">16dp</dimen>
+    <!--Home-->
+    <dimen name="home_card_corner_radius">6dp</dimen>
+</resources>

@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "476690923911",
+    "firebase_url": "https://e-waste-dcb1a.firebaseio.com",
+    "project_id": "e-waste-dcb1a",
+    "storage_bucket": "e-waste-dcb1a.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:476690923911:android:1e08867b53669c94375322",
+        "android_client_info": {
+          "package_name": "com.example.greenwaste2"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "476690923911-ufgea6mbakc7v9ntuev3mb282qbsdcag.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyChzSUAKnJCQD55kSSwatjfgOf54jiQRpU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "476690923911-ufgea6mbakc7v9ntuev3mb282qbsdcag.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
