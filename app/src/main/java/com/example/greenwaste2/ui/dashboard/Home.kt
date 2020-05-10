@@ -34,7 +34,7 @@ class Home : Fragment() {
         binding=DataBindingUtil.inflate(inflater,R.layout.fragment_home, container, false)
         setUpNavigation()
         auth = FirebaseAuth.getInstance()
-        database = FirebaseDatabase.getInstance().getReference("Items Upload").child(auth.currentUser?.uid.toString())
+        database = FirebaseDatabase.getInstance().getReference(auth.currentUser?.uid.toString())
         getData()
         return binding.root
     }
@@ -48,11 +48,13 @@ class Home : Fragment() {
             override fun onDataChange(dataSnapshot: DataSnapshot) {
                 val productList=ArrayList<Ewaste>()
                 if (dataSnapshot.exists()){
-                    val eMessage: Ewaste? =dataSnapshot.getValue(Ewaste::class.java)
-                    productList.add(eMessage!!)
-                    Log.d("tagger","$productList")
+                    dataSnapshot.children.forEach {
+                        Log.d("tagger","${it.value}")
+                        val eMessage: Ewaste? =it.getValue(Ewaste::class.java)
+                        productList.add(eMessage!!)
+                        Log.d("tagger","$productList")
 
-                    Log.d("tagger"," after list $productList")
+                    }
                     val dataSource= dataSourceTypedOf(productList)
                     setUpRecylerView(dataSource)
                 }

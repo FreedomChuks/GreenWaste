@@ -34,7 +34,7 @@ class AddEwaste : AppCompatActivity() {
         binding=DataBindingUtil.setContentView(this,R.layout.activity_add_ewaste)
         auth = FirebaseAuth.getInstance()
         storagereference = FirebaseStorage.getInstance().getReference("Items Upload").child("${System.currentTimeMillis()}")
-        databasereference = FirebaseDatabase.getInstance().getReference("Items Upload")
+        databasereference = FirebaseDatabase.getInstance().getReference(auth.currentUser!!.uid)
         selectAndConvertImage()
         Validate()
     }
@@ -116,8 +116,9 @@ class AddEwaste : AppCompatActivity() {
             putFile(file).addOnSuccessListener {
                 it.storage.downloadUrl.addOnCompleteListener {
                     val item=Ewaste(it.result.toString(),binding.itemName.text.toString(),binding.Desc.text.toString(),binding.addressl.text.toString())
-                    val itemid=databasereference.push().key
-                    databasereference.child(auth.currentUser?.uid!!).setValue(item)
+                    val itemId=databasereference.push().key
+                    Log.d("tagger","$itemId")
+                    databasereference.child(itemId!!).setValue(item)
                 }
 
                 finish()
