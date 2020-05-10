@@ -49,6 +49,8 @@
             android:text="a water bottle recycler"
             android:textColor="@color/deepblue"
             android:textSize="20sp"
+            android:ems="10"
+            android:maxEms="13"
             app:layout_constraintBottom_toBottomOf="@+id/circleImageView"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"

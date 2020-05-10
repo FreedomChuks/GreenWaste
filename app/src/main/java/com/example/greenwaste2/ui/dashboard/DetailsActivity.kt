@@ -40,9 +40,12 @@ class DetailsActivity : AppCompatActivity() {
                     dataSnapshot.children.forEach {
                         Log.d("tagger","${it.child("iname").value}")
                         if(it.child("iname").value == value){
-                            Log.d("gotten","$it")
                             val eMessage: Ewaste? =it.getValue(Ewaste::class.java)
                             Glide.with(this@DetailsActivity).load(eMessage?.iimage).into(binding.imageview)
+                            binding.apply {
+                                name.text=eMessage?.iname
+                                description.text=eMessage?.idecription
+                            }
                         }
                     }
 
