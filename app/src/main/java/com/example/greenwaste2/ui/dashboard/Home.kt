@@ -66,7 +66,7 @@ class Home : Fragment() {
                 onBind(::EwasteViewHolder){index, item ->  
                     name.text=item.iname
                     description.text=item.idecription
-                    Glide.with(this@Home).load(item.iimage).into(imgit )
+                    Glide.with(this@Home).load(item.iimage).into(image)
                 }
                 onClick {
 
