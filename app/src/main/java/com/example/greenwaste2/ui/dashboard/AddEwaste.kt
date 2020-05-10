@@ -17,6 +17,11 @@ import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.StorageReference
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers.IO
+import kotlinx.coroutines.Runnable
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
 import java.io.File
 
 class AddEwaste : AppCompatActivity() {
@@ -111,6 +116,11 @@ class AddEwaste : AppCompatActivity() {
             startLoader(0)
             Log.d("debug","hit here")
             putFile(file).addOnSuccessListener {
+                CoroutineScope(IO).launch {
+                    Log.d("tagger", it.storage.downloadUrl.result.toString())
+                    delay(4000)
+                }
+
                 val item=Ewaste(it.storage.downloadUrl.toString(),binding.itemName.text.toString(),binding.Desc.text.toString(),binding.addressl.text.toString())
                 val itemid=databasereference.push().key
                 databasereference.child(itemid!!).setValue(item)

@@ -9,6 +9,7 @@ import com.example.greenwaste2.R
 import com.example.greenwaste2.databinding.FragmentProfileBinding
 import com.example.greenwaste2.model.Ewaste
 import com.example.greenwaste2.model.RegisterList
+import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
 
@@ -37,7 +38,6 @@ class Profile : Fragment() {
             override fun onDataChange(p0: DataSnapshot) {
                 p0.children.forEach {
                     if (it.child("email").value==auth.currentUser?.email){
-                        Log.d("tagger","${it.value}")
                         val user: RegisterList? =it.getValue(RegisterList::class.java)
                         binding.apply {
                             firstname.setText(user?.firstname)
@@ -46,6 +46,10 @@ class Profile : Fragment() {
                             Phonenumber.setText(user?.password)
                         }
 
+                    }else{
+                        Snackbar.make(binding.root,"Invalid User",Snackbar.LENGTH_LONG).setAction("Okey") {view->
+                            view.alpha=0.4F
+                        }
                     }
 
                 }
@@ -56,8 +60,8 @@ class Profile : Fragment() {
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when(item.itemId){
-            R.id.logout->{
-              activity?.finish()
+            R.id.logouts->{
+                requireActivity().finish()
             }
         }
         return super.onOptionsItemSelected(item)
