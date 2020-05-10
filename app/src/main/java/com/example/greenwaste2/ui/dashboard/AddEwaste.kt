@@ -116,14 +116,12 @@ class AddEwaste : AppCompatActivity() {
             startLoader(0)
             Log.d("debug","hit here")
             putFile(file).addOnSuccessListener {
-                CoroutineScope(IO).launch {
-                    Log.d("tagger", it.storage.downloadUrl.result.toString())
-                    delay(4000)
+                it.storage.downloadUrl.addOnCompleteListener {
+                    val item=Ewaste(it.result.toString(),binding.itemName.text.toString(),binding.Desc.text.toString(),binding.addressl.text.toString())
+                    val itemid=databasereference.push().key
+                    databasereference.child(itemid!!).setValue(item)
                 }
 
-                val item=Ewaste(it.storage.downloadUrl.toString(),binding.itemName.text.toString(),binding.Desc.text.toString(),binding.addressl.text.toString())
-                val itemid=databasereference.push().key
-                databasereference.child(itemid!!).setValue(item)
                 finish()
 
             }.addOnFailureListener {

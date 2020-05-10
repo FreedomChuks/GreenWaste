@@ -8,7 +8,9 @@ import com.example.greenwaste2.R
 
 class EwasteViewHolder(itemview: View):ViewHolder(itemview){
     val name: TextView =itemview.findViewById(R.id.itemName)
-    val Description: TextView =itemview.findViewById(R.id.itemdescription)
+    val description: TextView =itemview.findViewById(R.id.itemdescription)
+    val image:ImageView=itemview.findViewById(R.id.circleImageView)
+
 }
 
 class AdsViewHolder(itemview: View):ViewHolder(itemview){

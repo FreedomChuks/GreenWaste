@@ -12,11 +12,13 @@ import com.afollestad.recyclical.datasource.DataSource
 import com.afollestad.recyclical.datasource.dataSourceTypedOf
 import com.afollestad.recyclical.setup
 import com.afollestad.recyclical.withItem
+import com.bumptech.glide.Glide
 import com.example.greenwaste2.R
 import com.example.greenwaste2.databinding.FragmentHomeBinding
 import com.example.greenwaste2.model.Ewaste
 import com.example.greenwaste2.utils.EwasteViewHolder
 import com.google.firebase.database.*
+import kotlinx.android.synthetic.main.activity_add_ewaste.*
 import java.util.*
 
 class Home : Fragment() {
@@ -63,7 +65,8 @@ class Home : Fragment() {
             withItem<Ewaste, EwasteViewHolder>(R.layout.ewaste_item){
                 onBind(::EwasteViewHolder){index, item ->  
                     name.text=item.iname
-                    Description.text=item.idecription
+                    description.text=item.idecription
+                    Glide.with(this@Home).load(item.iimage).into(imgit )
                 }
                 onClick {
 
