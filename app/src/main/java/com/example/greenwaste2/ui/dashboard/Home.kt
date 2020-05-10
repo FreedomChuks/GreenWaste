@@ -47,13 +47,16 @@ class Home : Fragment() {
 
             override fun onDataChange(dataSnapshot: DataSnapshot) {
                 val productList=ArrayList<Ewaste>()
-                val eMessage: Ewaste? =dataSnapshot.getValue(Ewaste::class.java)
-                productList.add(eMessage!!)
-                Log.d("tagger","$productList")
+                if (dataSnapshot.exists()){
+                    val eMessage: Ewaste? =dataSnapshot.getValue(Ewaste::class.java)
+                    productList.add(eMessage!!)
+                    Log.d("tagger","$productList")
 
-                Log.d("tagger"," after list $productList")
-                val dataSource= dataSourceTypedOf(productList)
-                setUpRecylerView(dataSource)
+                    Log.d("tagger"," after list $productList")
+                    val dataSource= dataSourceTypedOf(productList)
+                    setUpRecylerView(dataSource)
+                }
+
                 productList.clear()
             }
 
