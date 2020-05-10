@@ -80,6 +80,15 @@
                     android:text="Hello world this is the description"
                     android:textColor="@color/black"
                     android:fontFamily="@font/productsans_regular"/>
+
+                <TextView
+                    android:id="@+id/addresss"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="7dp"
+                    android:text="11 uninty street awoayaya ibeju lekki "
+                    android:textColor="@color/black"
+                    android:fontFamily="@font/productsans_regular"/>
             </LinearLayout>
         </androidx.core.widget.NestedScrollView>
 

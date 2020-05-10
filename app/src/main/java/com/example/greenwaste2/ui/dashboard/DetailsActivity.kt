@@ -45,6 +45,7 @@ class DetailsActivity : AppCompatActivity() {
                             binding.apply {
                                 name.text=eMessage?.iname
                                 description.text=eMessage?.idecription
+                                addresss.text=eMessage?.iaddress
                             }
                         }
                     }
