@@ -16,6 +16,7 @@ import com.bumptech.glide.Glide
 import com.example.greenwaste2.R
 import com.example.greenwaste2.databinding.FragmentHomeBinding
 import com.example.greenwaste2.model.Ewaste
+import com.example.greenwaste2.ui.dashboard.DetailsActivity.Companion.USER_ID
 import com.example.greenwaste2.utils.EwasteViewHolder
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
@@ -71,7 +72,9 @@ class Home : Fragment() {
                     Glide.with(this@Home).load(item.iimage).into(image)
                 }
                 onClick {
-
+                    val intent=Intent(activity,DetailsActivity::class.java)
+                    intent.putExtra(USER_ID,item.iname)
+                    startActivity(intent)
                 }
             }
         }
