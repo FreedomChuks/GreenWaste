@@ -17,6 +17,7 @@ import com.example.greenwaste2.R
 import com.example.greenwaste2.databinding.FragmentHomeBinding
 import com.example.greenwaste2.model.Ewaste
 import com.example.greenwaste2.utils.EwasteViewHolder
+import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
 import kotlinx.android.synthetic.main.activity_add_ewaste.*
 import java.util.*
@@ -24,13 +25,15 @@ import java.util.*
 class Home : Fragment() {
     lateinit var binding: FragmentHomeBinding
     private lateinit var database: DatabaseReference
+    private lateinit var auth: FirebaseAuth
 
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
         binding=DataBindingUtil.inflate(inflater,R.layout.fragment_home, container, false)
         setUpNavigation()
-        database = FirebaseDatabase.getInstance().getReference("Items Upload")
+        auth = FirebaseAuth.getInstance()
+        database = FirebaseDatabase.getInstance().getReference("Items Upload").child(auth.currentUser?.uid.toString())
         getData()
         return binding.root
     }
@@ -43,11 +46,10 @@ class Home : Fragment() {
 
             override fun onDataChange(dataSnapshot: DataSnapshot) {
                 val productList=ArrayList<Ewaste>()
-                dataSnapshot.children.forEach {
-                    val eMessage: Ewaste? =it.getValue(Ewaste::class.java)
-                    productList.add(eMessage!!)
-                    Log.d("tagger","$productList")
-                }
+                val eMessage: Ewaste? =dataSnapshot.getValue(Ewaste::class.java)
+                productList.add(eMessage!!)
+                Log.d("tagger","$productList")
+
                 Log.d("tagger"," after list $productList")
                 val dataSource= dataSourceTypedOf(productList)
                 setUpRecylerView(dataSource)

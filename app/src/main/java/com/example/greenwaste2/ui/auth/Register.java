@@ -81,7 +81,7 @@ public class Register extends AppCompatActivity {
                 Toast.makeText(this,gender,Toast.LENGTH_LONG).show();
                 break;
         }
-        reglist= new RegisterList(firstname,lastname,phonenumber,email,password,gender);
+        reglist= new RegisterList(firstname,lastname,email,password,phonenumber,gender);
 
         startLoader(0);
         auth.createUserWithEmailAndPassword(binding.emial.getText().toString(),binding.password.getText().toString()).addOnCompleteListener(new OnCompleteListener<AuthResult>() {

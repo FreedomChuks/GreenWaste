@@ -13,21 +13,18 @@ import com.example.greenwaste2.R
 import com.example.greenwaste2.databinding.ActivityAddEwasteBinding
 import com.example.greenwaste2.model.Ewaste
 import com.github.dhaval2404.imagepicker.ImagePicker
+import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.StorageReference
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers.IO
-import kotlinx.coroutines.Runnable
-import kotlinx.coroutines.delay
-import kotlinx.coroutines.launch
 import java.io.File
 
 class AddEwaste : AppCompatActivity() {
     lateinit var binding:ActivityAddEwasteBinding
     private lateinit var storagereference: StorageReference
     private lateinit var   databasereference: DatabaseReference
+    private lateinit var auth:FirebaseAuth
     lateinit var files: File
     lateinit var fileuris:Uri
     private var image:String?=null
@@ -35,6 +32,7 @@ class AddEwaste : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding=DataBindingUtil.setContentView(this,R.layout.activity_add_ewaste)
+        auth = FirebaseAuth.getInstance()
         storagereference = FirebaseStorage.getInstance().getReference("Items Upload").child("${System.currentTimeMillis()}")
         databasereference = FirebaseDatabase.getInstance().getReference("Items Upload")
         selectAndConvertImage()
@@ -119,7 +117,7 @@ class AddEwaste : AppCompatActivity() {
                 it.storage.downloadUrl.addOnCompleteListener {
                     val item=Ewaste(it.result.toString(),binding.itemName.text.toString(),binding.Desc.text.toString(),binding.addressl.text.toString())
                     val itemid=databasereference.push().key
-                    databasereference.child(itemid!!).setValue(item)
+                    databasereference.child(auth.currentUser?.uid!!).setValue(item)
                 }
 
                 finish()
